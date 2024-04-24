@@ -1,15 +1,19 @@
 #include "../include/ioexpander.h"
 
 
-#define PCAL6416A_ADDRESS 0x21 // The I2C address of the PCAL6416A
+/* The I2C address of the PCAL6416A */
+#define PCAL6416A_ADDRESS 0x21 
 
-int pcal6416a_fd; // File descriptor for the PCAL6416A
+/* File descriptor for the PCAL6416A */
+int pcal6416a_fd; 
 
+/* Open and initialize the I2C bus 1 */
 static void pcal6416a_init() {
-    pcal6416a_fd = open("/dev/i2c-1", O_RDWR); // Open the I2C bus 1
-    ioctl(pcal6416a_fd, I2C_SLAVE, PCAL6416A_ADDRESS); // Set the PCAL6416A as the active I2C slave
+    pcal6416a_fd = open("/dev/i2c-1", O_RDWR); 
+    ioctl(pcal6416a_fd, I2C_SLAVE, PCAL6416A_ADDRESS); 
 }
 
+/* Write and reading into the register of PCAL6416A I/O expander */
 static void pcal6416a_write_register(uint8_t reg, uint8_t value) {
     uint8_t data[2] = {reg, value};
     write(pcal6416a_fd, data, 2);
