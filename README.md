@@ -1,6 +1,6 @@
 <h2> LoRaWAN end-device stack implementation for ARM Cortex-A72 processor running on Linux <h2>
 
-## 1.Introduction
+## 1. Introduction
 
 This project is an implementation of a LoRaWAN end device stack for ARM Cortex-A72 processor running on Linux. This stack enables data communication between the end node and the things network through a LoRaWAN gateway. The end node hardware components includes an sx1262 lora module which interface via SPI and an PCAL6416A I/O expander which communicates with the SoC via I2C.
 
@@ -13,6 +13,22 @@ The [Porting Guide](https://stackforce.github.io/LoRaMac-doc/LoRaMac-doc-v4.7.0/
 
 
 ## 3. Get Started
+Clone the public repository
+
+```bash
+$ git clone https://github.com/mrdean05/Lora-Node-Cortex72.git
+```
+
+Initialize submodules contained in the project
+```bash
+$ cd Lora-Node-Cortex72
+$ git submodule update --init
+```
+
+Follow the [link](https://www.waveshare.com/wiki/SX1302_LoRaWAN_Gateway_HAT) to check out how to set up a lorawan gateway and set up your credentials on the things network.
+The necessary credentials for OTAA (Over-The-Air-Activation) include Device EUI, APP EUI  and APP Key.
+
+Include the credentials in (`..\examples\send_receive_otaa\config.h`)
 
 
 
