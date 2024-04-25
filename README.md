@@ -11,6 +11,7 @@ The [Porting Guide](https://stackforce.github.io/LoRaMac-doc/LoRaMac-doc-v4.7.0/
 
 ## Hardware Connection
 - PCAL6416A I/O expander connection to ARM Cortex-A72 processor
+
 | ARM Cortex-A72 processor           | PCAL6416A              |
 |------------------------------------|------------------------|
 | gpio 2                             | sda                    |
@@ -19,20 +20,21 @@ The [Porting Guide](https://stackforce.github.io/LoRaMac-doc/LoRaMac-doc-v4.7.0/
 
 
 - sx1262 lora module to ARM Cortex-A72 processor
-| ARM Cortex-A72 processor           | SX 1262         | PCAL6416A 
-|------------------------------------|-----------------|---------------
-| gpio 8                             | CS              |
-| gpio 10                            | MOSI            |
-| gpio 9                             | MISO            |
-| gpio 11                            | SCLK            |
-|                                    | TX_EN           | P1_2
-|                                    | RX_EN           | P1_1
-|                                    | RST             | P1_3
-|                                    | I01             | P1_6
-|                                    | IO2             | P1_5
-|                                    | IO3             | P1_4
-|                                    | Busy            | P1_7
-|                                    | En              | P1_0 
+
+| ARM Cortex-A72 processor           | SX 1262         | PCAL6416A     |
+|------------------------------------|-----------------|---------------|
+| gpio 8                             | CS              |               |
+| gpio 10                            | MOSI            |               |
+| gpio 9                             | MISO            |               |
+| gpio 11                            | SCLK            |               |
+|                                    | TX_EN           | P1_2          | 
+|                                    | RX_EN           | P1_1          |
+|                                    | RST             | P1_3          |
+|                                    | I01             | P1_6          |
+|                                    | IO2             | P1_5          |
+|                                    | IO3             | P1_4          |
+|                                    | Busy            | P1_7          |
+|                                    | En              | P1_0          |
 
 ##  Get Started
 - Clone the public repository
