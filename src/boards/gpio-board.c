@@ -75,7 +75,7 @@ void GpioMcuSetInterrupt( Gpio_t *obj, IrqModes irqMode, IrqPriorities irqPriori
     poll_fds[0].events = POLLPRI | POLLERR;
 
 
-    // create the event thread
+    /* create the event thread  */ 
     pthread_create(&event_thread, NULL, interrupt_handler, NULL); 
 }
 
@@ -96,11 +96,10 @@ void GpioMcuSetContext( Gpio_t *obj, void* context )
 }
 
 
-// callback function
+/* callback function */ 
 static void *interrupt_handler(void *arg) {
         while (1)
         {
-            printf("Waiting\n");
             ret = poll(poll_fds, 1, -1);
             if (ret > 0) {
                 n = read(f, &value, sizeof(value));
@@ -120,7 +119,7 @@ return NULL;
 
 static void set_io_port_1_4_interrupt()
 {
-    //set interrupt for Port 1_4 of the io expander
+    /* set interrupt for Port 1_4 of the io expander */ 
     io_interrupt_setup_p1_4();
 }
 

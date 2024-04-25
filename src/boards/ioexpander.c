@@ -35,7 +35,6 @@ void io_set_direction(PinNames pin, gpio_dir direction)
 {
     uint8_t value = pcal6416a_read_register(CONFIG_PORT_1)& ~(1 << pin);
     
-    //in is 1 aand 0 is out
     if (direction == GPIO_IN)
     {
         value |= (1 << pin);
@@ -71,11 +70,11 @@ uint32_t io_read(PinNames pin)
 
 void io_interrupt_setup_p1_4(void)
 {
-    //enable P1_4 interrpt
+    /* enable P1_4 interrpt */
     uint8_t value = 0xEF;
     pcal6416a_write_register (INTERRUPT_MASK_P0RT_1, value);
 
-    //set input latch to zero
+    /* set input latch to zero */
     value = 0x00; 
     pcal6416a_write_register (INPUT_LATCH_PORT_1, value);
 

@@ -1,17 +1,31 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <stdint.h>
+#include <fcntl.h>
 #include <sys/unistd.h>
 
 #include "utilities.h"
 #include "eeprom-board.h"
 
 FILE* file;
-char *file_path = "/home/pp/eeprom";
+char *file_path = "/tmp/eeprom";
 struct stat buffer_data;
 
 void EepromMcuInit()
 {
+    int fd;
+
+    // Open the file with write-only mode, creating it if it doesn't exist
+    fd = open(file_path, O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+    if (fd == -1) {
+        perror("open");
+        return 1;
+    }
+
+    // Close the file descriptor
+    close(fd);
+
+    printf("File created successfully: %s\n", file_path);
 
 }
 
@@ -20,7 +34,6 @@ void EepromMcuInit()
 LmnStatus_t EepromMcuReadBuffer( uint16_t addr, uint8_t *buffer, uint16_t size )
 {
     int i = 0;
-    printf("------------------------------------------------------------------\n");
     if (stat(file_path,&buffer_data)==0)
     {
         //open file for reading
@@ -48,7 +61,6 @@ LmnStatus_t EepromMcuReadBuffer( uint16_t addr, uint8_t *buffer, uint16_t size )
 
 LmnStatus_t EepromMcuWriteBuffer( uint16_t addr, uint8_t *buffer, uint16_t size )
 {
-    printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     
     if (stat(file_path,&buffer_data)==0){
         //open file for writing
@@ -56,7 +68,7 @@ LmnStatus_t EepromMcuWriteBuffer( uint16_t addr, uint8_t *buffer, uint16_t size 
         if (file == NULL){
         printf("Error opening exisitng file!\n");
         return LMN_STATUS_ERROR;        
-    }
+        }
     }
     else 
     {
@@ -87,6 +99,6 @@ uint8_t EepromMcuFlush()
     {
         printf("Error deleting file.\n");
     }
-    return 1;          
+    return 0;          
     
 }

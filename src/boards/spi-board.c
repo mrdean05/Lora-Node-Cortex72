@@ -23,18 +23,17 @@ uint32_t spi_speed = 1000000;
 void SpiInit( Spi_t *obj, SpiId_t spiId, PinNames mosi, PinNames miso, PinNames sclk, PinNames nss )
 {
      
-    //const char* spi_device= (spiId == SPI_1) ? "/dev/spidev0.0": "/dev/spidev0.1";
     const char* spi_device= "/dev/spidev0.0";
 
-    //open the SPI device
+    /* open the SPI device */
     fd = open(spi_device, O_RDWR);
     if (ret < 0)
     {
         perror("Failed to open SPI device\n");
         exit(EXIT_FAILURE);
     }
-    // Configure the SPI settings 
     
+    /* Configure the SPI settings */  
     ret = ioctl(fd, SPI_IOC_WR_MODE, &mode);
     if (ret < 0)
     {

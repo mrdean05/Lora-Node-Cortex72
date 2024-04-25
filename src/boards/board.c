@@ -33,7 +33,6 @@ uint32_t BoardGetRandomSeed( void )
 
 void BoardGetUniqueId( uint8_t *id )
 {
-    //eui-70b3d57ed005a000
     uint8_t *board_id = "eui-70b3d57ed005ab62";
     memcpy(id, board_id, 8);
 }
