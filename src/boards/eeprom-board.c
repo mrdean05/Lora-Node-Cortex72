@@ -15,7 +15,7 @@ void EepromMcuInit()
 {
     int fd;
 
-    // Open the file with write-only mode, creating it if it doesn't exist
+    /* Open the file with write-only mode, creating it if it doesn't exist */
     fd = open(file_path, O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
     if (fd == -1) {
         perror("open");
@@ -36,7 +36,7 @@ LmnStatus_t EepromMcuReadBuffer( uint16_t addr, uint8_t *buffer, uint16_t size )
     int i = 0;
     if (stat(file_path,&buffer_data)==0)
     {
-        //open file for reading
+        /* open file for reading */
         file = fopen(file_path, "r");
         if (file == NULL)
         {
@@ -63,7 +63,7 @@ LmnStatus_t EepromMcuWriteBuffer( uint16_t addr, uint8_t *buffer, uint16_t size 
 {
     
     if (stat(file_path,&buffer_data)==0){
-        //open file for writing
+        /* open file for writing */
         file = fopen(file_path, "w");
         if (file == NULL){
         printf("Error opening exisitng file!\n");
@@ -72,7 +72,7 @@ LmnStatus_t EepromMcuWriteBuffer( uint16_t addr, uint8_t *buffer, uint16_t size 
     }
     else 
     {
-        //open file for writing
+        /* open file for writing */
         file = fopen(file_path, "w");
         if (file == NULL){
         printf("Error creating and opening file!\n");
@@ -80,11 +80,11 @@ LmnStatus_t EepromMcuWriteBuffer( uint16_t addr, uint8_t *buffer, uint16_t size 
         }
     }
 
-    //Write file 
+    /* Write file */
     fprintf(file, buffer);
     printf("Successful write file\n");
 
-    //close file
+    /* close file */
     fclose(file);
     return LMN_STATUS_OK;
 }
